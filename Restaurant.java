@@ -92,7 +92,7 @@ public class CityGuideUI {
         mainPanel.setLayout(new FlowLayout());
         frame.add(mainPanel, BorderLayout.CENTER);
 
-        // Dropdown options
+        
         String[] locations = {"Downtown", "Midtown", "Uptown", "Seaside", "Old Town", "Chinatown"};
         String[] cuisines = {"Italian", "Steakhouse", "Sushi", "Vegan", "American", "French", "Seafood", "Chinese", "Mexican"};
         String[] priceRanges = {"$", "$$", "$$$"};
