@@ -96,3 +96,29 @@ public class CityGuideUI {
         String[] locations = {"Downtown", "Midtown", "Uptown", "Seaside", "Old Town", "Chinatown"};
         String[] cuisines = {"Italian", "Steakhouse", "Sushi", "Vegan", "American", "French", "Seafood", "Chinese", "Mexican"};
         String[] priceRanges = {"$", "$$", "$$$"};
+         locationBox = new JComboBox<>(locations);
+        cuisineBox = new JComboBox<>(cuisines);
+        priceBox = new JComboBox<>(priceRanges);
+
+        ratingField = new JTextField(5);
+
+        searchButton = new JButton("Search");
+        searchButton.setBackground(new Color(51, 153, 255));
+        searchButton.setForeground(Color.WHITE);
+        searchButton.setFocusPainted(false);
+
+        // Hover animation
+        searchButton.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                searchButton.setBackground(new Color(30, 144, 255));
+            }
+
+            public void mouseExited(MouseEvent e) {
+                searchButton.setBackground(new Color(51, 153, 255));
+            }
+        });
+
+        resultArea = new JTextArea(10, 65);
+        resultArea.setEditable(false);
+        resultArea.setFont(new Font("Verdana", Font.PLAIN, 14));
+        resultArea.setBackground(new Color(255, 255, 230));
