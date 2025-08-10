@@ -122,3 +122,20 @@ public class CityGuideUI {
         resultArea.setEditable(false);
         resultArea.setFont(new Font("Verdana", Font.PLAIN, 14));
         resultArea.setBackground(new Color(255, 255, 230));
+ // Add components
+        mainPanel.add(new JLabel("Select Location:"));
+        mainPanel.add(locationBox);
+        mainPanel.add(new JLabel("Select Cuisine:"));
+        mainPanel.add(cuisineBox);
+        mainPanel.add(new JLabel("Select Price Range:"));
+        mainPanel.add(priceBox);
+        mainPanel.add(new JLabel("Enter Minimum Rating (0.0 - 5.0):"));
+        mainPanel.add(ratingField);
+        mainPanel.add(searchButton);
+        mainPanel.add(new JScrollPane(resultArea));
+
+        // Button Action
+        searchButton.addActionListener(e -> animateButtonClick());
+
+        frame.setVisible(true);
+    }
