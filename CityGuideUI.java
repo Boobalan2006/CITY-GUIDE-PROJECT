@@ -139,3 +139,52 @@ public class CityGuideUI {
 
         frame.setVisible(true);
     }
+      private void animateButtonClick() {
+        // Bounce animation for Search button
+        Point p = searchButton.getLocation();
+        Timer timer = new Timer(15, new ActionListener() {
+            int step = 0;
+            boolean down = true;
+
+            public void actionPerformed(ActionEvent e) {
+                if (down) {
+                    searchButton.setLocation(p.x, p.y + step);
+                    step++;
+                    if (step > 5) down = false;
+                } else {
+                    searchButton.setLocation(p.x, p.y + step);
+                    step--;
+                    if (step == 0) {
+                        ((Timer) e.getSource()).stop();
+                        searchRestaurants(); // Perform search after bounce
+                    }
+                }
+            }
+        });
+        timer.start();
+    }
+
+    private void searchRestaurants() {
+        String location = locationBox.getSelectedItem().toString();
+        String cuisine = cuisineBox.getSelectedItem().toString();
+        String price = priceBox.getSelectedItem().toString();
+        double rating;
+
+        try {
+            rating = Double.parseDouble(ratingField.getText());
+        } catch (NumberFormatException ex) {
+            animateText("Please enter a valid rating (0.0 to 5.0)");
+            return;
+        }
+
+        List<Restaurant> results = guide.getRecommendations(location, cuisine, price, rating);
+
+        if (results.isEmpty()) {
+            animateText("No restaurants found for the given criteria.");
+        } else {
+            animateText("Recommended Restaurants:\n");
+            for (Restaurant r : results) {
+                animateText(r.toString() + "\n");
+            }
+        }
+    }
