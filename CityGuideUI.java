@@ -1,5 +1,8 @@
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.*;
 
 class Restaurant {
     String name, location, cuisineType, priceRange;
@@ -45,7 +48,8 @@ class CityGuide {
         restaurants.add(new Restaurant("La Fiesta", "Downtown", "Mexican", 4.1, "$"));
         restaurants.add(new Restaurant("Burger Barn", "Midtown", "American", 4.0, "$"));
     }
-   public List<Restaurant> getRecommendations(String location, String cuisineType, String priceRange, double minRating) {
+
+    public List<Restaurant> getRecommendations(String location, String cuisineType, String priceRange, double minRating) {
         List<Restaurant> recommendations = new ArrayList<>();
         for (Restaurant r : restaurants) {
             if (r.getLocation().equalsIgnoreCase(location)
@@ -58,6 +62,7 @@ class CityGuide {
         return recommendations;
     }
 }
+
 public class CityGuideUI {
     private JFrame frame;
     private JComboBox<String> locationBox, cuisineBox, priceBox;
@@ -96,7 +101,9 @@ public class CityGuideUI {
         String[] locations = {"Downtown", "Midtown", "Uptown", "Seaside", "Old Town", "Chinatown"};
         String[] cuisines = {"Italian", "Steakhouse", "Sushi", "Vegan", "American", "French", "Seafood", "Chinese", "Mexican"};
         String[] priceRanges = {"$", "$$", "$$$"};
-         locationBox = new JComboBox<>(locations);
+
+        // Components with colors
+        locationBox = new JComboBox<>(locations);
         cuisineBox = new JComboBox<>(cuisines);
         priceBox = new JComboBox<>(priceRanges);
 
@@ -122,7 +129,8 @@ public class CityGuideUI {
         resultArea.setEditable(false);
         resultArea.setFont(new Font("Verdana", Font.PLAIN, 14));
         resultArea.setBackground(new Color(255, 255, 230));
- // Add components
+
+        // Add components
         mainPanel.add(new JLabel("Select Location:"));
         mainPanel.add(locationBox);
         mainPanel.add(new JLabel("Select Cuisine:"));
@@ -139,7 +147,8 @@ public class CityGuideUI {
 
         frame.setVisible(true);
     }
-      private void animateButtonClick() {
+
+    private void animateButtonClick() {
         // Bounce animation for Search button
         Point p = searchButton.getLocation();
         Timer timer = new Timer(15, new ActionListener() {
@@ -188,7 +197,9 @@ public class CityGuideUI {
             }
         }
     }
- private void animateText(String text) {
+
+    // Typewriter text animation
+    private void animateText(String text) {
         new Thread(() -> {
             resultArea.append("\n");
             for (char c : text.toCharArray()) {
