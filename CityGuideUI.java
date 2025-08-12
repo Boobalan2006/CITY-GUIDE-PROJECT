@@ -188,3 +188,19 @@ public class CityGuideUI {
             }
         }
     }
+ private void animateText(String text) {
+        new Thread(() -> {
+            resultArea.append("\n");
+            for (char c : text.toCharArray()) {
+                resultArea.append(String.valueOf(c));
+                try {
+                    Thread.sleep(15); // animation speed
+                } catch (InterruptedException ignored) {}
+            }
+        }).start();
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(CityGuideUI::new);
+    }
+}
